@@ -1,35 +1,22 @@
 function solution(S) {
   let stack = [];
 
-  if (S.length === 0) {
-    return 1;
-  }
+  const brackets = {
+    "(": ")",
+    "[": "]",
+    "{": "}",
+  };
 
   for (let i = 0; i < S.length; i++) {
-    if (S[i] === "(" || S[i] === "{" || S[i] === "[") {
+    if (Object.keys(brackets).indexOf(S[i]) !== -1) {
+      // 여는 괄호일 때는 stack에 push
       stack.push(S[i]);
     }
-
-    if (S[i] === ")") {
+    // 닫는 괄호인데 스택이 비어있을 경우에는 0 리턴
+    if (Object.values(brackets).indexOf(S[i]) !== -1) {
       if (stack.length === 0) {
         return 0;
-      } else if (stack[stack.length - 1] === "(") {
-        stack.pop();
-      }
-    }
-
-    if (S[i] === "]") {
-      if (stack.length === 0) {
-        return 0;
-      } else if (stack[stack.length - 1] === "[") {
-        stack.pop();
-      }
-    }
-
-    if (S[i] === "}") {
-      if (stack.length === 0) {
-        return 0;
-      } else if (stack[stack.length - 1] === "{") {
+      } else if (brackets[stack[stack.length - 1]] === S[i]) {
         stack.pop();
       }
     }
@@ -37,9 +24,8 @@ function solution(S) {
 
   if (stack.length === 0) {
     return 1;
-  } else {
-    return 0;
   }
+  return 0;
 }
 
 // test cases
