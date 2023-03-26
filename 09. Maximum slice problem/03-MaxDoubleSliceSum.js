@@ -23,5 +23,3 @@ function solution(A) {
 }
 
 console.log(solution([3, 2, 6, -1, 4, 5, -1, 2])); // expected: 17
-// 아닐 것 같지만 일단 돌려보자... ㅎ -> 7% 그래도 예제만 맞은 건 아니군! 다행
-//
